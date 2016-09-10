@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<script language="javascript" src="public.js"></script>
+<script>
+	window.onload=function() {
+		$('btnOk').onclick = function() {
+			var first = $('first').value;
+			var second = $('second').value;
+			var str = 'first='+first+'&second='+second;
+			//创建Ajax对象
+			var xhr=createXhr();
+			//实例化对象
+			xhr.open('post', 'deme4.php');
+			//设置header头
+			xhr.setRequestHeader('Content-Type','Application/x-www-form-urlencoded');
+			//设置回调函数
+			xhr.onreadystatechange=function(){
+				//判断状态码
+				if(xhr.readyState==4 && xhr.status==200){
+					//将返回值赋给输入框
+					$('sum').value=xhr.responseText;
+				}
+			};
+			//发送Ajax请求
+			xhr.send(str);
+		};
+	};
+</script>
+</head>
+<body>
+	<input type='text' id='first' />
+	<hr />
+	<input type='text' id='second' />
+	<hr />
+	<input type='text' id='sum' />
+	<hr />
+	<input type='button' id='btnOk' value='计算' />
+	<hr />
+</body>
+</html>

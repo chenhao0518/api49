@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<script language="javascript" src="public.js"></script>
+<script>
+//绑定页面载入事件
+window.onload=function(){
+	//绑定失去焦点事件
+	$('username').onblur=function(){
+		//获取输入框的值
+		var username = $('username').value;
+		//创建Ajax对象
+		var xhr=createXhr();
+		//初始化Ajax对象
+		xhr.open('get','demo3.php?username='+username);
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState == 4 &&xhr.status == 200){
+				var flag = xhr.responseText;
+				if(flag==0){
+					$('user').innerHTML='<font color=green size=1>用户名可以使用<font>';
+				}else{
+					$('user').innerHTML='<font color=red size=1>已经被注册了<font>';
+				}
+			}
+		}
+		//发送Ajax请求
+		xhr.send(null);
+	}
+};
+</script>
+
+</head>
+<body>
+	用户名:<input type='text' id='username' /><span id="user"></span>
+	<hr/>
+	密码:<input type='text' id='second' /><hr/>
+	<input type="button" id='btnOk' value="登录" >	
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<script language="javascript" src="public.js"></script>
+<script type="text/javascript">
+
+	function test(){
+		//创建对象
+		var	xhr=createXhr();
+		xhr.open('get','1.php?first=10&second=20');
+		//设置回调函数
+		xhr.onreadystatechange=function(){
+			//console.log('dfg1h');
+			if(xhr.readyState == 4) {
+				//console.log('dfgh');
+				alert(xhr.responseText);
+			}
+		};
+		xhr.send(null);
+	}
+</script>
+</head>
+<body>
+	<input type="button" id='btnOk' onclick='test()' value="确定" >
+</body>
+</html>
